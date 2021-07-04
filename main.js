@@ -1,6 +1,8 @@
 nosex=0;
 nosey=0;
-function preload() {}
+function preload() {
+    clownNose=loadImage("https://i.postimg.cc/tgVyDBcq/m.png");
+}
 function setup() {
     canvas=createCanvas(300,300);
     canvas.center();
@@ -11,7 +13,8 @@ function setup() {
     poseNet.on("pose",gotPoses);
 }
 function draw() {
-image(video,0,0,300,300);    
+image(video,0,0,300,300);
+    image(clownNose,nosex,nosey,40,30);
 }
 function snapshot() {
     save("Amogh.png");
@@ -23,7 +26,7 @@ function gotPoses(results)
 {
 if(results.length>0) {
  console.log(results);
-    nosex=results[0].pose.nose.x;
+    nosex=results[0].pose.nose.x-18;
     nosey=results[0].pose.nose.y;
 }
 }
